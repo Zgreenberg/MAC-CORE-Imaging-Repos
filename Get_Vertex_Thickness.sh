@@ -20,7 +20,6 @@
 # Last Edited: 3/9/2014
 
 #!/bin/bash
-#$ -S /bin/bash
 
 # Set up Environment for freesurfer use
 iam=`whoami` #user name
@@ -34,7 +33,9 @@ source FreeSurferEnv.sh
 # navigate to freesurfer subjects dir
 cd $SUBJECTS_DIR
 
-# write the inital glm perameters. substitute a group variable-name for group
+# write the inital glm perameters. substitute a group variable-name for group. 
+# You will want to change the contrasts based on your hypothesis and variables entered
+# into the model. See http://surfer.nmr.mgh.harvard.edu/fswiki/FsgdExamples for help
 python "f = open('lh-Avg-Thickness-group-cor.mtx', 'wt', encoding='utf-8'); s = '+0.0 +0.0 +0.5 +0.5'; f.write(s);")
 
 # run mris_preproc to:
@@ -67,7 +68,6 @@ mri_glmfit \
 --glmdir lh.<variable_name>.glmdir
 
 # View the uncorrected significance map with tksurfer:
-
 tksurfer fsaverage lh inflated \ 
 -annot aparc.annot -fthresh 2 \ 
 -overlay lh.<variable_name>.glmdir/lh-Avg-thickness-<variable_name>-Cor/sig.mgh
