@@ -1,6 +1,18 @@
 # Get_Vertex_thickness.sh
 # Description: This script will run vertex-wise thickness comparisons between two groups 
-# using Freesurfer v 5.3. Subjects should all have been processed with recon-all
+# using Freesurfer v 5.X. Subjects should all have been processed with recon-all. You will
+# want to replace <variable_name> with the variable you are using to seperate your two groups
+# in the code below (i.e., pathology). 
+
+# The next step is to create .fsgd (Freesurfer Group Discriptor) file that contains information 
+# about the discrete and continuous variables you want to model using linear regression.  
+# This is a simple text file, where the first line is “GroupDescriptorFile1”. 
+# The next two rows have two Class entries (your two groups). For example 
+# if you want to compare patients with Primary Progressive Aphasia (PPA), you could enter CLASS PPA 
+# for the second row, and CLASS Control for the third row of the file. The 4th row will be “Variables” 
+# in this example, and will be fallowed by a row for each subject, prefixed with “Input”, fallowed by name 
+# of subject in the directory, class (or group, i.e., ‘Control’), and any continuous variables you want to 
+# enter into the model. See http://surfer.nmr.mgh.harvard.edu/fswiki/Fsgdf2G0V for help.
 
 # Author: Zachary Greenberg
 # UCSF Imaging CORE
@@ -21,9 +33,6 @@ source FreeSurferEnv.sh
 
 # navigate to freesurfer subjects dir
 cd $SUBJECTS_DIR
-
-# make a folder for glm files
-mkdir glm
 
 # write the inital glm perameters. substitute a group variable-name for group
 python "f = open('lh-Avg-Thickness-group-cor.mtx', 'wt', encoding='utf-8'); s = '+0.0 +0.0 +0.5 +0.5'; f.write(s);")
