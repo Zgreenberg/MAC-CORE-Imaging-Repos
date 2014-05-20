@@ -27,7 +27,7 @@
 # University of California, San Francisco
 # Last Edited: May 15th, 2014
 
-#ASL repository
+#resting-state repository
 from MAC_resting_state import * 
 
 # Folders to naviagate to on /mnt/macdata/groups/
