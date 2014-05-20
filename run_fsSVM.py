@@ -1,4 +1,4 @@
-# Run_fsSVM.py
+# run_fsSVM.py
 # Author: Zack Greenberg
 # Department of Neurology
 # Last Editd May 1st, 2014
